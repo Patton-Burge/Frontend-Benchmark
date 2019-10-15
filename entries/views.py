@@ -16,7 +16,7 @@ class LatestEntryView(ListView):
 class TopEntriesView(ListView):
     queryset = Entry.objects.all().order_by("-likes")
     paginate_by = 10
-    template_name = "latest_entries.html"
+    template_name = "top_entries.html"
     context_object_name = "entries"
 
 
