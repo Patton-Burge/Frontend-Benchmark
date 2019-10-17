@@ -1,36 +1,39 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'base.css' %}">
-        <link
+    <link
       href="https://fonts.googleapis.com/css?family=Amatic+SC|Courgette&display=swap"
       rel="stylesheet"
     />
-    <script href="{% static 'entries.js' %}"></script>
     <title>Document</title>
     <style>
       * {
         font-family: "Courgette", cursive;
       }
     </style>
-  </head>
-  <body>
-  <h1>OFF<br />WHITE</h1>
+</head>
+<body>
+<h1>OFF<br />WHITE</h1>
   <nav>
   <a class="nav-atags" href="{% url 'top_entries' %}">View Top Posts!</a>
   <a class="nav-atags" href="{% url 'create_entry' %}">Create a Post!</a>
   <a class="nav-atags" href="{% url 'latest_entries' %}">Latest Entries!</a>
   <a class="nav-atags" href="">Do Something Else!</a>
   </nav>
-    <form action="{% url 'create_entry' %}" method="post">
-        <label for="content">
-            {% csrf_token %}
-            <input required type="textarea" name="content" size="25" placeholder="Thank You">
-        </label>
-    </form>
+  <div class="holder">
+    <ul class="item-list">
+      {% for entry in entries%}
+      <li class="item-list--item">
+        <P class="list-item--content">{{ entry.content }}</P>
+        <p class="list-item--content"><button>Like:</button>  {{ entry.likes }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    </div>
 </body>
 </html>
